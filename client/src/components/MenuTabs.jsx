@@ -10,7 +10,7 @@ const MenuTabs = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [showAddItemPopup, setShowAddItemPopup] = useState(false);
     const [showAddMenuPopup, setShowAddMenuPopup] = useState(false);
-    const itemsPerPage = 6;
+    const itemsPerPage = 4;
 
     useEffect(() => {
         const fetchMenus = async () => {
@@ -114,9 +114,9 @@ const MenuTabs = () => {
                         {currentItems.length > 0 ? (
                             currentItems.map((item) => (
                                 <div key={item._id}>
-                                    <div className="flex justify-between mb-2">
+                                    <div className="flex justify-between items-center mb-2 sm:mb-4">
                                         <h3 className="text-lg sm:text-xl font-bold uppercase">{item.name}</h3>
-                                        <span className="text-lg sm:text-xl">${item.price.toFixed(2)}</span>
+                                        <span className="text-lg sm:text-xl ml-4 sm:ml-6">${item.price.toFixed(2)}</span>
                                     </div>
                                     <p className="text-xs sm:text-sm text-[#bbbbbb]">{item.description}</p>
                                 </div>
