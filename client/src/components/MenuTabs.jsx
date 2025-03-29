@@ -15,7 +15,7 @@ const MenuTabs = () => {
     useEffect(() => {
         const fetchMenus = async () => {
             try {
-                const response = await fetch('http://localhost:3001/api/menus/');
+                const response = await fetch('https://menu-backend-2iui.onrender.com/api/menus/');
                 const data = await response.json();
                 setMenus(data);
                 setSelectedMenu(data[0]);

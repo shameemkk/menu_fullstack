@@ -6,7 +6,7 @@ const AddMenuPopup = ({ onClose, onAddMenu }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:3001/api/menus', {
+            const response = await fetch('https://menu-backend-2iui.onrender.com/api/menus', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
