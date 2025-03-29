@@ -47,7 +47,7 @@ const MenuTabs = () => {
     const totalPages = Math.ceil((selectedMenu?.items?.length || 0) / itemsPerPage);
 
     return (
-        <section className=" mx-auto px-4 py-8 bg-[#121618] text-white">
+        <section className="mx-auto px-4 py-8 bg-[#121618] text-white sm:px-6 md:px-8">
             <div className="flex flex-col items-center space-y-4 mb-12 border p-4 rounded-md bg-[#121618] border-[#333] relative">
                 <button
                     onClick={() => setShowAddMenuPopup(true)}
@@ -55,7 +55,7 @@ const MenuTabs = () => {
                 >
                     +
                 </button>
-                <div className="flex justify-center space-x-2">
+                <div className="flex flex-wrap justify-center space-x-2">
                     {menus.map((menu) => (
                         <button
                             key={menu._id}
@@ -63,7 +63,7 @@ const MenuTabs = () => {
                                 setSelectedMenu(menu);
                                 setCurrentPage(1);
                             }}
-                            className={`px-8 py-3 uppercase border rounded-md transition-colors ${
+                            className={`px-4 py-2 uppercase border rounded-md transition-colors text-sm sm:px-6 sm:py-3 ${
                                 selectedMenu?._id === menu._id
                                     ? 'bg-blue-500 text-white border-blue-700'
                                     : 'bg-[#121618] border-[#333] hover:bg-[#1a1e20]'
@@ -74,22 +74,26 @@ const MenuTabs = () => {
                     ))}
                 </div>
                 {selectedMenu?.description && (
-                    <p className="mt-4 text-center text-[#bbbbbb]">{selectedMenu.description}</p>
+                    <p className="mt-4 text-center text-[#bbbbbb] text-sm sm:text-base">{selectedMenu.description}</p>
                 )}
             </div>
-            
+
             <div className="relative max-w-4xl mx-auto">
-                <div className="absolute -left-24 top-0">
-                    <img src={drink} alt="Cocktail" width={150} height={200} className="object-contain" />
+                <div className="absolute left-2 top-2 sm:-left-6 sm:top-0">
+                    <img
+                        src={drink}
+                        alt="Cocktail"
+                        className="w-12 h-18 sm:w-16 sm:h-24 md:w-24 md:h-36 object-contain"
+                    />
                 </div>
 
-                <div className="border border-[#333] p-12 relative">
-                    <div className="flex items-center justify-center mb-12">
-                        <div className="h-px bg-white w-16 mr-6"></div>
-                        <h2 className="text-4xl font-bold uppercase">Menu Items</h2>
-                        <div className="h-px bg-white w-16 ml-6"></div>
+                <div className="border border-[#333] p-6 sm:p-12 relative">
+                    <div className="flex flex-col items-center justify-center mb-8 sm:mb-12">
+                        
+                        <h2 className="text-2xl sm:text-4xl font-bold uppercase text-center">Menu Items</h2>
+                        <div className="h-px bg-white w-12 sm:w-16 mt-4 sm:mt-2 sm:ml-6"></div>
                         <button
-                            className="ml-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+                            className="mt-4 sm:ml-4 px-3 py-2 sm:px-4 sm:py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors text-sm sm:text-base"
                             onClick={() => setShowAddItemPopup(true)}
                         >
                             <svg
@@ -98,37 +102,37 @@ const MenuTabs = () => {
                                 viewBox="0 0 24 24"
                                 strokeWidth={2}
                                 stroke="currentColor"
-                                className="w-5 h-5 inline-block"
+                                className="w-4 h-4 sm:w-5 sm:h-5 inline-block"
                             >
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                             </svg>
-                             Add Item
+                            Add Item
                         </button>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-12">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12">
                         {currentItems.length > 0 ? (
                             currentItems.map((item) => (
                                 <div key={item._id}>
                                     <div className="flex justify-between mb-2">
-                                        <h3 className="text-xl font-bold uppercase">{item.name}</h3>
-                                        <span className="text-xl">${item.price.toFixed(2)}</span>
+                                        <h3 className="text-lg sm:text-xl font-bold uppercase">{item.name}</h3>
+                                        <span className="text-lg sm:text-xl">${item.price.toFixed(2)}</span>
                                     </div>
-                                    <p className="text-sm text-[#bbbbbb]">{item.description}</p>
+                                    <p className="text-xs sm:text-sm text-[#bbbbbb]">{item.description}</p>
                                 </div>
                             ))
                         ) : (
-                            <p className="text-center text-[#bbbbbb]">No items available for this menu.</p>
+                            <p className="text-center text-[#bbbbbb] text-sm sm:text-base">No items available for this menu.</p>
                         )}
                     </div>
 
                     {totalPages > 1 && (
-                        <div className="flex justify-center mt-8 space-x-2">
+                        <div className="flex justify-center mt-6 sm:mt-8 space-x-2">
                             {Array.from({ length: totalPages }, (_, index) => (
                                 <button
                                     key={index}
                                     onClick={() => handlePageChange(index + 1)}
-                                    className={`px-4 py-2 border rounded-md ${
+                                    className={`px-3 py-1 sm:px-4 sm:py-2 border rounded-md text-sm sm:text-base ${
                                         currentPage === index + 1
                                             ? 'bg-blue-500 text-white border-blue-700'
                                             : 'bg-[#121618] border-[#333] hover:bg-[#1a1e20]'
@@ -140,8 +144,12 @@ const MenuTabs = () => {
                         </div>
                     )}
 
-                    <div className="absolute -right-24 bottom-12">
-                        <img src={cocktail2} alt="Cocktail" width={150} height={200} className="object-contain" />
+                    <div className="absolute right-2 bottom-0 sm:-right-6 sm:bottom-0">
+                        <img
+                            src={cocktail2}
+                            alt="Cocktail"
+                            className="w-12 h-18 sm:w-16 sm:h-24 md:w-24 md:h-36 object-contain"
+                        />
                     </div>
                 </div>
             </div>
